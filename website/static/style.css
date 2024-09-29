@@ -1,0 +1,24 @@
+#title {
+    height: 40vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+h1 {
+    height: auto;
+    font-size: 200px;
+    letter-spacing: -20px;
+    color: #8EB1C7;
+    top: 50px;
+    margin-bottom: -5px;
+}
+
+#slogan {
+    font-size: 40px;
+    color: #C1BFB5;
+    margin: 0;
+}

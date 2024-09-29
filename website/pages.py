@@ -9,3 +9,17 @@ pages = Blueprint("pages", __name__)
 def home():
     return render_template('index.html', user=current_user)
 
+@pages.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html', user=current_user)
+
+@pages.route('/settings')
+@login_required
+def settings():
+    return render_template('settings.html', user=current_user)
+
+@pages.route('/not-settings')
+def not_settings():
+    return render_template('not_settings.html', user=current_user)
+
