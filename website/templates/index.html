@@ -13,55 +13,97 @@
 
 {% block content %}
   <div class="contain-all">
-    <div class="bg"></div>
+    <div class="bg">
+      <img src="{{ url_for('static', filename='./images/logo.png') }}">
+    </div>
 
-    <!-- Introduction -->
-    <section id="expose">
-      <h2>What We Do</h2>
-      <div class="inner-section">
+    <div id="section-container">
+      <!-- Introduction -->
+      <section id="expose">
+        <h2>What We Do</h2>
+        <div class="inner-section">
+          <div class="box"></div>
+          <!--
+          <img src="{{ url_for('static', filename='./images/intro') }}">
+          -->
+        </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- Courses to Explore -->
+      <section id="courses">
+        <h2>Our Top Courses</h2>
+        <div class="course-contain">
+          <div class="inner-section">
+            <div class="course">
+              <h3>Arduino Mastery</h3>
+              <p>Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+            </div>
+            <div class="course">
+              <h3>Linux for Beginners</h3>
+              <p>Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+            </div>
+            <div class="course">
+              <h3>Creating AI Influencers</h3>
+              <p>Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+            </div>
+          </div>
 
-    <!-- Courses to Explore -->
-    <section id="courses">
-      <h2>Our Top Courses</h2>
-      <div class="inner-section">
+          <div class="inner-section">
+            <div class="course">
+              <h3>Newtonian Physics</h3>
+              <p>Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+            </div>
+            <div class="course">
+              <h3>Open Source Philosophy</h3>
+              <p>Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+            </div>
+            <div class="course">
+              <h3>Essentials of Psychology</h3>
+              <p>Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- Features -->
+      <section id="features">
+        <h2>Key Features</h2>
+        <div class="inner-section">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+      </section>
 
-    <!-- Features -->
-    <section id="features">
-      <h2>Key Features</h2>
-      <div class="inner-section">
+      <!-- Testimonials -->
+      <section id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="review-contain">
+          <div class="review"></div>
+          <div class="review"></div>
+        </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- For Course Creation -->
+      <section id="templates">
+        <h2>Create A Course</h2>
+        <div class="inner-section">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+      </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials">
-      <h2>Testimonials</h2>
-      <div class="inner-section">
-
-      </div>
-    </section>
-
-    <!-- For Course Creation -->
-    <section id="templates">
-      <h2>Create A Course</h2>
-      <div class="inner-section">
-
-      </div>
-    </section>
-
-    <!-- Pricing Plans -->
-    <section id="pricing">
-      <h2>Pricing Plans</h2>
-      <div class="inner-section">
-
-      </div>
-    </section>
+      <!-- Pricing Plans -->
+      <section id="pricing">
+        <h2>Pricing Plans</h2>
+        <div class="inner-section">
+          <div class="box-s"></div>
+          <div class="box-mid"></div>
+          <div class="box-s"></div>
+        </div>
+      </section>
+    </div>
   </div>
 
 {% endblock %}
