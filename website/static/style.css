@@ -1,10 +1,12 @@
 #title {
-    height: 40vh;
+    height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 75px;
+    margin-bottom: 100px;
     z-index: 5;
 }
 
@@ -34,10 +36,9 @@ h1 {
     justify-content: center;
 }
 
-.bg {
-    height: 100%;
-    width: 70%;
-    margin-top: -400px;
+#title img {
+    margin-top: -500px;
+    z-index: -1;
 }
 
 section {
@@ -54,9 +55,10 @@ section {
 
 section h2 {
     color: #8EB1C7;
-    font-size: 25px;
+    font-size: 40px;
     text-align: center;
     padding: 25px 0;
+    margin-bottom: -10px;
 }
 
 #section-container {
@@ -101,6 +103,10 @@ section h2 {
     background-color: #C1BFB5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .box-s {
@@ -116,7 +122,16 @@ section h2 {
     width: 30%;
     background-color: #C1BFB5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    padding: 50px 25px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-mid-wid {
+    width: 50%;
 }
 
 .review-contain {
@@ -135,6 +150,35 @@ section h2 {
     background-color: #C1BFB5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     border-radius: 20px;
+}
+
+.act {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #C1BFB5;
+    background-color: #2F4550;
+    border: none;
+    border-radius: 10px;
+}
+
+#expose img {
+    height: 600px;
+    border-radius: 20px;
+}
+
+#courses a {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#templates svg {
+    width: 50px;
+    z-index: 5;
+    margin-left: 100%;
+}
+
+#templates a:hover {
+    cursor: pointer;
 }
 
 #foot {

@@ -8,24 +8,30 @@
   <div id="title">
     <h1>Cognoscente</h1>
     <h3 id="slogan">Creating Courses, Cultivating Genius</h3>
+    <img src="{{ url_for('static', filename='./images/logo.png') }}">
   </div>
 {% endblock %}
 
 {% block content %}
   <div class="contain-all">
-    <div class="bg">
-      <img src="{{ url_for('static', filename='./images/logo.png') }}">
-    </div>
-
     <div id="section-container">
       <!-- Introduction -->
       <section id="expose">
         <h2>What We Do</h2>
         <div class="inner-section">
-          <div class="box"></div>
-          <!--
-          <img src="{{ url_for('static', filename='./images/intro') }}">
-          -->
+          <div class="box-mid box-mid-wid">
+            <h3>Discover STEM-Related Courses!</h3>
+            <p>Find courses in the area you want to master. From beginners to
+            experts, there are courses to learn from and enjoy!</p>
+            <h3>Create Your Own STEM Courses!</h3>
+            <p>Build your own curriculum for learning any STEM-Related skill.
+            You design and teach, and <em>you</em> can share your knowledge and
+            skills.</p>
+            <h3>Make Money & Develop Your Field!</h3>
+            <p>Earn money by sharing your expertise. Help grow the community
+            around your sphere and inspire the world.</p>
+          </div>
+          <img src="{{ url_for('static', filename='./images/intro.jpg') }}">
         </div>
       </section>
 
@@ -63,6 +69,7 @@
             </div>
           </div>
         </div>
+        <a class="act" href="#" data-replace="Here">Discover More Courses <span>Here</span></a>
       </section>
 
       <!-- Features -->
@@ -79,8 +86,24 @@
       <section id="testimonials">
         <h2>Testimonials</h2>
         <div class="review-contain">
-          <div class="review"></div>
-          <div class="review"></div>
+          <div class="review">
+            <div class="stars">
+              <div class="star-gold"></div>
+              <div class="star-gold"></div>
+              <div class="star-gold"></div>
+              <div class="star-gold"></div>
+              <div class="star-black"></div>
+            </div>
+          </div>
+          <div class="review">
+            <div class="stars">
+              <div class="star-gold"></div>
+              <div class="star-gold"></div>
+              <div class="star-gold"></div>
+              <div class="star-black"></div>
+              <div class="star-black"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -88,19 +111,21 @@
       <section id="templates">
         <h2>Create A Course</h2>
         <div class="inner-section">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-        </div>
-      </section>
-
-      <!-- Pricing Plans -->
-      <section id="pricing">
-        <h2>Pricing Plans</h2>
-        <div class="inner-section">
-          <div class="box-s"></div>
-          <div class="box-mid"></div>
-          <div class="box-s"></div>
+          <div class="box">
+            <h3>Choose a STEM Topic</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+            <p>Pretend there is an image here</p>
+          </div>
+          <div class="box">
+            <h3>Record Content</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+            <p>Pretend there is an image here</p>
+          </div>
+          <div class="box">
+            <h3>Release Your Course!</h3>
+            <p>Pretend there is an image here</p>
+            <a class="act" href="#">Create Your Course</a>
+          </div>
         </div>
       </section>
     </div>
