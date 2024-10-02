@@ -131,7 +131,7 @@ section h2 {
 }
 
 .box-mid-wid {
-    width: 50%;
+    width: 30%;
 }
 
 .review-contain {
@@ -149,7 +149,11 @@ section h2 {
     width: 80%;
     background-color: #C1BFB5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    padding: 20px;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .act {
@@ -161,8 +165,32 @@ section h2 {
     border-radius: 10px;
 }
 
-.stars {
+.test-contain {
     width: 20%;
+    margin-top: 10px;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-rev {
+    width: 70%;
+}
+
+.title-rev {
+    margin-bottom: -20px;
+}
+
+.content-rev {
+    max-height: 85px;
+    overflow: scroll;
+    margin-bottom: 20px;
+}
+
+.stars {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -179,7 +207,7 @@ section h2 {
 }
 
 #expose img {
-    height: 600px;
+    height: 500px;
     border-radius: 20px;
 }
 
