@@ -161,6 +161,23 @@ section h2 {
     border-radius: 10px;
 }
 
+.stars {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.star-black svg {
+    width: 25px;
+    color: #000;
+}
+
+.star-gold svg {
+    width: 25px;
+    color: #B58B00;
+}
+
 #expose img {
     height: 600px;
     border-radius: 20px;
