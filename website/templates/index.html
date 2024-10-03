@@ -19,7 +19,7 @@
       <section id="expose">
         <h2>What We Do</h2>
         <div class="inner-section">
-          <div class="box-mid box-mid-wid">
+          <div class="box-mid">
             <h3>Discover STEM-Related Courses!</h3>
             <p>Find courses in the area you want to master. From beginners to
             experts, there are courses to learn from and enjoy!</p>
@@ -31,7 +31,10 @@
             <p>Earn money by sharing your expertise. Help grow the community
             around your sphere and inspire the world.</p>
           </div>
-          <img src="{{ url_for('static', filename='./images/intro.webp') }}">
+          <div class="img_link">
+            <img src="{{ url_for('static', filename='./images/intro.webp') }}">
+            <a class="act longer-act" href="{{ url_for('auth.login') }}">Login or Create Account Here</a>
+          </div>
         </div>
       </section>
 
@@ -155,7 +158,6 @@
               </div>
             </div>
           </div>
-          <a class="act" href="#" data-replace="Here">Find More Reviews <span>Here</span></a>
         </div>
       </section>
 

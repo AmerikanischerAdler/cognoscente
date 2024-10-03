@@ -12,7 +12,7 @@
 
 h1 {
     height: auto;
-    font-size: 200px;
+    font-size: 15vw;
     letter-spacing: -20px;
     color: #8EB1C7;
     margin-bottom: -5px;
@@ -22,7 +22,7 @@ h1 {
     font-size: 40px;
     color: #C1BFB5;
     background-color: #FEFDFF;
-    border: 1px solid #C1BFB5;
+    border: none;
     border-radius: 25px;
     padding: 0 10px;
     margin: 0;
@@ -47,7 +47,8 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #C1BFB5;
+    background-color: #FEFDFF;
+    border: 2px solid #C1BFB5;
     border-radius: 20px;
     margin-bottom: -100px;
     margin-top: 100px;
@@ -59,6 +60,7 @@ section h2 {
     text-align: center;
     padding: 25px 0;
     margin-bottom: -10px;
+    margin-top: -5px;
 }
 
 #section-container {
@@ -100,7 +102,7 @@ section h2 {
 .box {
     height: 300px;
     width: 30%;
-    background-color: #C1BFB5;
+    background-color: #FEFDFF;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     border-radius: 20px;
     display: flex;
@@ -112,7 +114,7 @@ section h2 {
 .box-s {
     height: 400px;
     width: 30%;
-    background-color: #C1BFB5;
+    background-color: #FEFDFF;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     border-radius: 20px;
 }
@@ -120,7 +122,7 @@ section h2 {
 .box-mid {
     height: 500px;
     width: 30%;
-    background-color: #C1BFB5;
+    background-color: #FEFDFF;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     padding: 50px 25px;
     border-radius: 20px;
@@ -130,8 +132,17 @@ section h2 {
     justify-content: center;
 }
 
-.box-mid-wid {
-    width: 30%;
+.img_link {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: evenly;
+}
+
+.img_link p {
+    padding: 20px;
+    font-size: 30px;
 }
 
 .review-contain {
@@ -147,7 +158,7 @@ section h2 {
 .review {
     height: 100px;
     width: 80%;
-    background-color: #C1BFB5;
+    background-color: #FEFDFF;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     padding: 20px;
     border-radius: 20px;
@@ -158,11 +169,18 @@ section h2 {
 
 .act {
     text-decoration: none;
+    text-align: center;
+    margin-top: 15px;
     padding: 10px 20px;
     color: #C1BFB5;
     background-color: #2F4550;
     border: none;
     border-radius: 10px;
+}
+
+.longer-act {
+    width: 94%;
+    margin-top: 40px;
 }
 
 .test-contain {
@@ -218,8 +236,9 @@ section h2 {
 
 #templates svg {
     width: 50px;
-    z-index: 5;
     margin-left: 100%;
+    color: #C1BFB5;
+    z-index: 5;
 }
 
 #templates a:hover {
