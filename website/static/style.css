@@ -133,6 +133,7 @@ section h3 {
     align-items: center;
     justify-content: center;
     overflow-y: scroll;
+    overflow-x: hidden;
     gap: 2vh;
 }
 
