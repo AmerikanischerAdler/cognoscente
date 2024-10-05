@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block page %}Dashboard{% endblock %}
+
+{% block style %}dashboard{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h1>My Dashboard</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="contain-all">
+    <div id="section-container">
+
+      <!-- Courses In Progress -->
+      <section id="prog-courses" class="courses">
+        <h2>Courses In Progress</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/arduino.png') }}">
+                <h3 class="course-title course">Arduino Mastery</h3>
+                <p class="course-desc course">Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator1"><span>Creator1</span></a></p>
+                <p><strong>Released: </strong> 10-23-2024</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+              <!-- Progress bar -->
+              <div class="prog-bar"></div>
+            </div>
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/linux.webp') }}">
+                <h3 class="course-title course">Linux for Beginners</h3>
+                <p class="course-desc course">Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator2"><span>Creator2</span></a></p>
+                <p><strong>Released: </strong> 02-03-2022</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+              <!-- Progress bar -->
+              <div class="prog-bar"></div>
+            </div>
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <a href="#" class="plus-icon-anchor">
+                  <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- My Courses -->
+      <section id="my-courses" class="courses">
+        <h2>My Courses</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/equations.webp') }}">
+                <h3 class="course-title course">Newtonian Physics</h3>
+                <p class="course-desc course">Proident minim voluptate eiusmod consectetur eu. Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator4"><span>Creator4</span></a></p>
+                <p><strong>Released: </strong> 07-12-2021</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+            </div>
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <a href="#" class="plus-icon-anchor">
+                  <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommended Courses -->
+      <section id="rec-courses" class="courses">
+        <h2>Recommended Courses</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/influencer.webp') }}">
+                <h3 class="course-title course">Creating AI Influencers</h3>
+                <p class="course-desc course">Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator3"><span>Creator3</span></a></p>
+                <p><strong>Released: </strong> 08-14-2021</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+            </div>
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/philosophy.webp') }}">
+                <h3 class="course-title course">Open Source Philosophy</h3>
+                <p class="course-desc course">Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator5"><span>Creator5</span></a></p>
+                <p><strong>Released: </strong> 02-02-2020</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+            </div>
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/brain.webp') }}">
+                <h3 class="course-title course">Essentials of Psychology</h3>
+                <p class="course-desc course">Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator6"><span>Creator6</span></a></p>
+                <p><strong>Released: </strong> 01-31-2020</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="bookmarks" class="courses">
+        <h2>Bookmarks</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/philosophy.webp') }}">
+                <h3 class="course-title course">Open Source Philosophy</h3>
+                <p class="course-desc course">Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident. Ullamco velit anim est anim consectetur ea sint. Nostrud cupidatat dolor excepteur enim amet.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator5"><span>Creator5</span></a></p>
+                <p><strong>Released: </strong> 02-02-2020</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+            </div>
+
+            <div class="v-course">
+              <div class="v-course extra-div">
+                <img class="course course-img" src="{{ url_for('static', filename='./images/brain.webp') }}">
+                <h3 class="course-title course">Essentials of Psychology</h3>
+                <p class="course-desc course">Quis enim sunt nostrud in aliqua voluptate culpa reprehenderit aliqua. Voluptate do ut cillum qui amet est exercitation in sunt fugiat nulla consectetur. Ad quis nostrud elit minim elit velit velit elit laborum quis proident.</p>
+              </div>
+              <div class="course-info">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="Creator6"><span>Creator6</span></a></p>
+                <p><strong>Released: </strong> 01-31-2020</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block foot %}
+  <div id="foot"></div>
+{% endblock %}

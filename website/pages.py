@@ -9,6 +9,11 @@ pages = Blueprint("pages", __name__)
 def home():
     return render_template('index.html', user=current_user)
 
+@pages.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', user=current_user)
+
 @pages.route('/profile')
 @login_required
 def profile():
