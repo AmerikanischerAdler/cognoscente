@@ -93,6 +93,54 @@ CREATE TABLE users (
 );
 ```
 
+*Create Courses Table:*
+
+```mysql
+USE Cognoscente;
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    short_desc VARCHAR(100) NOT NULL,
+    full_desc TEXT NOT NULL,
+    thumbnail LONGBLOB,
+    image_mime_type VARCHAR(50),
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    creator INT NOT NULL,
+    FOREIGN KEY (creator) REFERENCES users(user_id) ON DELETE CASCADE
+);
+```
+
+*Create Lessons Table:*
+
+```mysql
+USE Cognoscente;
+CREATE TABLE lessons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    short_desc VARCHAR(200) NOT NULL,
+    thumbnail LONGBLOB,
+    image_mime_type VARCHAR(50),
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    creator INT NOT NULL,
+    course_id INT NOT NULL,
+    FOREIGN KEY (creator) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+```
+
+*Create Bookmarks Table:*
+
+```mysql
+USE Cognoscente;
+CREATE TABLE bookmarks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    creator INT NOT NULL,
+    course_id INT NOT NULL,
+    FOREIGN KEY (creator) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+```
+
 ## Usage
 
 1) Open Terminal
