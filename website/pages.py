@@ -24,7 +24,7 @@ def submit_course():
     short_course_desc = request.form.get('short-course-desc')
     course_type = request.form.get('course_type')
     skill_level = request.form.get('skill_level')
-    thumbnail = request.files.get('thumbnail')
+    course_thumbnail = request.files.get('thumbnail-course')
 
     # DB stuff
 
