@@ -21,7 +21,7 @@ def login():
             if user and check_password_hash(user.password, password):
                 login_user(user, remember=True)
                 flash("Logged in Successfully!", "success")
-                return redirect(url_for("pages.home")) 
+                return redirect(url_for("pages.dashboard")) 
             else:
                 flash("Incorrect Email or Password.", "error")
 
@@ -40,7 +40,7 @@ def login():
 
                 flash("Registration Successful!", "success")
                 login_user(new_user, remember=True)
-                return redirect(url_for("pages.home")) 
+                return redirect(url_for("pages.dashboard")) 
 
     return render_template("login.html", user=current_user)
 

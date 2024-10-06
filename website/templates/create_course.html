@@ -12,7 +12,7 @@
 
 {% block content %}
   <div class="contain-all">
-    <form method="POST" enctype="multipart/form-data" id="courseForm">
+    <form method="POST" enctype="multipart/form-data" id="courseForm" action="/submit_course">
       <div class="h-course">
         <div class="h-course-h">
           <div class="course h-course-img">
@@ -29,18 +29,18 @@
 
               <label for="course_type">Course Type: </label>
               <select id="course_type" name="course_type" form="courseForm">
-                <option value="science">Science</option>
-                <option value="technology">Technology</option>
-                <option value="engineering">Engineering</option>
-                <option value="math">Mathematics</option>
+                <option value="Science">Science</option>
+                <option value="Technology">Technology</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Mathematics">Mathematics</option>
               </select>
 
               <label for="skill-level">Skill Level: </label>
               <select id="skill_level" name="skill_level" form="courseForm">
-                <option value="neophyte">Neophyte (Beginner)</option>
-                <option value="initiate">Initiate (Intermediate)</option>
-                <option value="artisan">Artisan (Advanced)</option>
-                <option value="cognoscente">Cognoscente (Expert)</option>
+                <option value="Neophyte">Neophyte (Beginner)</option>
+                <option value="Initiate">Initiate (Intermediate)</option>
+                <option value="Artisan">Artisan (Advanced)</option>
+                <option value="Cognoscente">Cognoscente (Expert)</option>
               </select>
             </div>
           </div>
@@ -52,7 +52,7 @@
       </div>
     </form>
 
-    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm">
+    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson">
       <div class="h-course textarea-contain">
         <h2>Add Lesson</h2>
         <a class="add-btn" onclick="addLesson()">
@@ -123,14 +123,14 @@
               </div>
             </div>
             <div id="btn-holder">
-              <button id="subLesson" class="subBtn" type="submit" form="lessonForm" action="/submit_lesson">Save Lesson</button>
+              <button id="subLesson" class="subBtn" type="submit" form="lessonForm">Save Lesson</button>
             </div>
           </div>
         </div>
       </div>
     </form>
     <div class="course line"></div>
-    <button id="subCourse" class="subBtn" type="submit" form="courseForm" action="/submit_course">Save Course</button>
+    <button id="subCourse" class="subBtn" type="submit" form="courseForm">Save Course</button>
   </div>
   <script src="{{ url_for('static', filename='./create_course.js') }}"></script>
 {% endblock %}

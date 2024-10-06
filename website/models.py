@@ -29,6 +29,8 @@ class Course(db.Model):
     title = db.Column(db.String(200), nullable=False)
     short_desc = db.Column(db.String(100), nullable=False)
     full_desc = db.Column(db.Text, nullable=False)
+    course_type = db.Column(db.String(100), nullable=False)
+    skill_level = db.Column(db.String(100), nullable=False)
     thumbnail = db.Column(db.LargeBinary, nullable=True)
     image_mime_type = db.Column(db.String(50), nullable=True)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())

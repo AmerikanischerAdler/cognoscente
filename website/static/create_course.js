@@ -1,26 +1,3 @@
-// Submit Course
-async function submitCourseForm() {
-    const courseForm = document.getElementById('courseForm');
-    const formData = new FormData(courseForm);  
-
-    try {
-        const response = await fetch('/submit_course', {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-        if (result.status === 'success') {
-            alert(result.message);  
-            // Use this to render info back on page without reload later
-        } else {
-            alert('Failed to submit course');
-        }
-    } catch (error) {
-        console.error('Error submitting course form:', error);
-    }
-}
-
 // Submit Lesson
 async function submitLessonForm() {
     const lessonForm = document.getElementById('lessonForm');
@@ -43,11 +20,6 @@ async function submitLessonForm() {
         console.error('Error submitting lesson form:', error);
     }
 }
-
-document.getElementById('subCourse').addEventListener('click', (e) => {
-    e.preventDefault();  
-    submitCourseForm(); 
-});
 
 document.getElementById('subLesson').addEventListener('click', (e) => {
     e.preventDefault();

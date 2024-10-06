@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify, send_file, abort
 from flask_login import login_required, current_user
-from .models import db, User 
+from .models import db, User, Course, Lesson, Bookmark
 
 pages = Blueprint("pages", __name__)
 
@@ -22,16 +22,44 @@ def create_course():
 def submit_course():
     course_title = request.form.get('course-title')
     short_course_desc = request.form.get('short-course-desc')
+    full_course_desc = request.form.get('course-desc')
     course_type = request.form.get('course_type')
     skill_level = request.form.get('skill_level')
     course_thumbnail = request.files.get('thumbnail-course')
 
-    # DB stuff
+    if not short_course_desc or not full_course_desc:
+        flash("Course Requires Description", "error")
 
-    return jsonify({
-        'status': 'success', 
-        'message': 'Course submitted successfully'
-        })
+    if not course_title:
+        flash("Course Requires Title", "error")
+    
+    if not course_type or not skill_level:
+        flash("Course Requires Course Type and Skill Level", "error")
+
+    if not course_thumbnail:
+        image_data = None
+        image_mime_type = None
+
+    else:
+        image_data = course_thumbnail.read()
+        image_mime_type = course_thumbnail.mimetype
+
+    course = Course(
+            creator=current_user.user_id, 
+            title=course_title, 
+            short_desc=short_course_desc,
+            full_desc=full_course_desc,
+            course_type=course_type,
+            skill_level=skill_level,
+            thumbnail=image_data, 
+            image_mime_type=image_mime_type
+            )
+
+    db.session.add(course)
+    db.session.commit()
+
+    flash("Course Created!", "success")
+    return redirect(url_for("pages.dashboard"))
 
 @pages.route('/submit_lesson', methods=['POST'])
 def submit_lesson():

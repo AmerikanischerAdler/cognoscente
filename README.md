@@ -102,6 +102,8 @@ CREATE TABLE courses (
     title VARCHAR(200) NOT NULL,
     short_desc VARCHAR(100) NOT NULL,
     full_desc TEXT NOT NULL,
+    course_type VARCHAR(100) NOT NULL,
+    skill_level VARCHAR(100) NOT NULL,
     thumbnail LONGBLOB,
     image_mime_type VARCHAR(50),
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
