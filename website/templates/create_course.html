@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block page %}Create Course{% endblock %}
+
+{% block style %}create_course{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h1>Create A Course</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="contain-all">
+    <form method="POST" enctype="multipart/form-data" id="course-container">
+      <div class="h-course">
+        <div class="h-course-h">
+          <input type="file" name="thumbnail" class="course h-course-img">
+          <div class="h-course">
+            <input type="text" name="course-title" class="course-title course h-title" placeholder="Course Title">
+            <input type="text" name="short-course-desc" class="course course-desc crs-desc" placeholder="Short Course Description">
+            <div class="course-info h-info">
+
+              <label for="course_type">Course Type: </label>
+              <select id="course_type" name="course_type">
+                <option value="science">Science</option>
+                <option value="technology">Technology</option>
+                <option value="engineering">Engineering</option>
+                <option value="math">Mathematics</option>
+              </select>
+
+              <label for="skill-level">Skill Level: </label>
+              <select id="skill_level" name="skill_level">
+                <option value="neophyte">Neophyte (Beginner)</option>
+                <option value="initiate">Initiate (Intermediate)</option>
+                <option value="artisan">Artisan (Advanced)</option>
+                <option value="cognoscente">Cognoscente (Expert)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-course textarea-contain">
+        <textarea name="course-desc" class="crs-desc" placeholder="Full Course Description"></textarea>
+      </div>
+
+      <div class="h-course textarea-contain">
+        <h2>Add Lesson</h2>
+        <a class="add-btn" onclick="addLesson()">
+          <svg id="plusIcon" class="add-lesson" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="display: inline;">
+            <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+          </svg>
+          <svg id="minusIcon" class="add-lesson" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="display: none;">
+            <path fill="currentColor" d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+          </svg>
+        </a>
+      
+        <div class="h-course hidden addBtn" id="lessonFormContain">
+          <form method="POST" enctype="multipart/form-data" class="h-course">
+            <div class="h-course-h">
+              <input type="file" name="thumbnail-lesson" class="course h-course-img">
+              <div class="h-course">
+                <input type="text" name="lesson-title" class="course-title course h-title" placeholder="Course Title">
+                <input type="text" name="short-lesson-desc" class="course course-desc2 crs-desc" placeholder="Short Course Description">
+                <div id="addContent" class="course-info h-info"></div>
+                <h3 id="content-text">Add Content</h3>
+                <a id="revealBtn" class="course course-title hidden content-add" onclick="toggleContent()">
+                  <svg id="plusIcon2" class="add-lesson" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="display: inline;">
+                    <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                  </svg>
+                  <svg id="minusIcon2" class="add-lesson" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="display: none;">
+                    <path fill="currentColor" d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div id="revealContent" class="hidden">
+              <div class="add-option">
+                <h4>Add Video</h4>
+                <div class="icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"/></svg>
+                </div>
+                <input type="file" name="video">
+              </div>
+
+              <div class="add-option">
+                <h4>Add Document</h4>
+                <div class="icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384v38.6C310.1 219.5 256 287.4 256 368c0 59.1 29.1 111.3 73.7 143.3c-3.2 .5-6.4 .7-9.7 .7H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zm48 96a144 144 0 1 1 0 288 144 144 0 1 1 0-288zm16 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v48H368c-8.8 0-16 7.2-16 16s7.2 16 16 16h48v48c0 8.8 7.2 16 16 16s16-7.2 16-16V384h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H448V304z"/></svg>
+                </div>
+                <input type="file" name="document">
+              </div>
+
+              <div class="add-option">
+                <h4>Add Other</h4>
+                <div class="icon-container">
+                  <svg id="add-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                </div>
+                <input type="file" name="file">
+              </div>
+            </div>
+            <button id="subLesson" class="subBtn" type="submit">Save Lesson</button>
+          </form>
+        </div>
+      </div>
+      <div class="course line"></div>
+      <button class="subBtn" type="submit">Save Course</button>
+    </form>
+  </div>
+  <script src="{{ url_for('static', filename='./create_course.js') }}"></script>
+{% endblock %}
+
+{% block foot %}
+  <div id="foot"></div>
+{% endblock %}
