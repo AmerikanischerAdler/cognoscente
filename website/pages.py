@@ -67,6 +67,10 @@ def submit_lesson():
     short_lesson_desc = request.form.get('short-lesson-desc')
     lesson_thumbnail = request.files.get('thumbnail-lesson')
 
+    video = request.files.get('video')
+    document = request.files.get('document')
+    file = request.files.get('file')
+
     # DB stuff
 
     return jsonify({
