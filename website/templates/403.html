@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>403: Page Forbidden | Cognoscente</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/error.css">
+</head>
+<body>
+  <div class="content">
+    <svg viewBox="0 0 960 300">
+    	<symbol id="s-text">
+    		<text text-anchor="middle" x="50%" y="50%">403</text>
+    	</symbol>
+    
+    	<g class = "g-ants">
+    		<use xlink:href="#s-text" class="text"></use>
+    		<use xlink:href="#s-text" class="text"></use>
+    		<use xlink:href="#s-text" class="text"></use>
+    		<use xlink:href="#s-text" class="text"></use>
+    		<use xlink:href="#s-text" class="text"></use>
+    	</g>
+    </svg>
+     
+    <h1>Page Forbidden</h1>
+    {% if user.is_authenticated %}
+    <a href="{{ url_for('pages.dashboard') }}">Back to Home</a>
+    {% else %}
+    <a href="{{ url_for('pages.home') }}">Back to Home</a>
+    {% endif %}
+    </div>
+</body>
+</html>
