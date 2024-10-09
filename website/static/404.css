@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-weight: 800;
+    box-sizing: border-box;
+    background: #FEFDFF;
+    font-family: MuseoModerno;
+}
+
+svg {
+    height: 90;
+    width: 100%;
+    font: 10.5em 'MuseoModerno';
+    margin-top: 100px;
+}
+
+.content {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font: 40px 'MuseoModerno', sans-serif;
+    font-weight: bold;
+    color: #2F4550;
+}
+
+a {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1em 'MuseoModerno';
+    font-weight: 300;
+    text-decoration: none;
+    text-align: center;
+    color: #C1BFB5;
+    background-color: #2F4550;
+    border: none;
+    border-radius: 10px;
+    margin: 15px 0;
+    padding: 10px 25px;
+}
+
+.text {
+    fill: none;
+    stroke-dasharray: 8% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 1%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text:nth-child(1){
+	stroke: #8EB1C7;
+	animation-delay: -1;
+}
+
+.text:nth-child(2){
+	stroke: #C1BFB5;
+	animation-delay: -2s;
+}
+
+.text:nth-child(3){
+	stroke: #2F4550;
+	animation-delay: -3s;
+}
+
+.text:nth-child(4){
+	stroke: #2F4550;
+	animation-delay: -4s;
+}
+
+.text:nth-child(5){
+	stroke: #000;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+	100% {
+    stroke-dashoffset: -35%;
+  }
+}
