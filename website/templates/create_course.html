@@ -52,7 +52,11 @@
       </div>
     </form>
 
-    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson">
+    {% if course_id %}
+    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson/{{ course_id }}">
+    {% else %}
+    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson/0">
+    {% endif %}
       <div class="h-course textarea-contain">
         <h2>Add Lesson</h2>
         <a class="add-btn" onclick="addLesson()">

@@ -61,8 +61,20 @@ def submit_course():
     flash("Course Created!", "success")
     return redirect(url_for("pages.dashboard"))
 
-@pages.route('/submit_lesson', methods=['POST'])
-def submit_lesson():
+@pages.route('/submit_lesson<course_id>', methods=['POST'])
+def submit_lesson(course_id):
+    if course_id == 0:
+        # Create course
+        pass
+    
+    course = Course.query.filter_by(id=course_id).first()
+
+    if not course:
+        return jsonify({
+            'status': 'error',
+            'message': 'Course not found'
+            })
+
     lesson_title = request.form.get('lesson-title')
     short_lesson_desc = request.form.get('short-lesson-desc')
     lesson_thumbnail = request.files.get('thumbnail-lesson')
