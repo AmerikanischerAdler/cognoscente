@@ -12,6 +12,19 @@ pages = Blueprint("pages", __name__)
 def home():
     return render_template('index.html', user=current_user)
 
+@pages.route('/search')
+def search():
+    query = request.args.get('query')
+
+    courses = Course.query.filter(Course.title.ilike(f'%{query}%') | Course.short_desc.like(f'%{query}%')).all()
+    science_courses = Course.query.filter_by(course_type="Science").all()
+    tech_courses = Course.query.filter_by(course_type="Technology").all()
+    eng_courses = Course.query.filter_by(course_type="Engineering").all()
+    math_courses = Course.query.filter_by(course_type="Mathematics").all()
+    creators = User.query.filter(User.username.ilike(f'%{query}%')).all()
+
+    return render_template('search_results.html', query=query, courses=courses, creators=creators, user=current_user, math_courses=math_courses, tech_courses=tech_courses, eng_courses=eng_courses, science_courses=science_courses)
+
 @pages.route('/dashboard')
 @login_required
 def dashboard():
