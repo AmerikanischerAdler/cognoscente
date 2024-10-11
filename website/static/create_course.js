@@ -1,30 +1,36 @@
-// Submit Lesson
-async function submitLessonForm() {
-    const lessonForm = document.getElementById('lessonForm');
-    const formData = new FormData(lessonForm);  
+window.onload(fetchCourse())
 
-    try {
-        const response = await fetch('/submit_lesson', {
-            method: 'POST',
-            body: formData
-        });
+function fetchCourse() {
+    const course_id = document.getElementById('overall-course-container').getAttribute('data-course-id');
 
-        const result = await response.json();
-        if (result.status === 'success') {
-            alert(result.message);
-            // Use this to render info back on page without reload later
+    fetch('/fetch4js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ course_id: course_id })  
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (data.error) {
+            console.error('Course not found');
         } else {
-            alert('Failed to submit lesson');
-        }
-    } catch (error) {
-        console.error('Error submitting lesson form:', error);
-    }
-}
+            let titleInp = document.getElementById("course-title");
+            let shortDesc = document.getElementById("short-course-desc");
+            let fullDesc = document.getElementById("full-course-desc");
+            let courseType = document.getElementById("course_type");
+            let skillLevel = document.getElementById("skill_level");
 
-document.getElementById('subLesson').addEventListener('click', (e) => {
-    e.preventDefault();
-    submitLessonForm();
-});
+            titleInp.value = data.title;
+            shortDesc.value = data.short_desc;
+            fullDesc.value = data.full_desc
+            courseType.value = data.type
+            skillLevel.value = data.level
+        }
+    })
+    .catch(error => console.error('Error fetching course:', error));
+}
 
 function addLesson() {
     const addBtn = document.querySelector(".addBtn");

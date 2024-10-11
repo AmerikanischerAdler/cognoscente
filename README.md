@@ -118,6 +118,7 @@ CREATE TABLE courses (
 USE Cognoscente;
 CREATE TABLE lessons (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
     short_desc VARCHAR(200) NOT NULL,
     thumbnail LONGBLOB,
     image_mime_type VARCHAR(50),

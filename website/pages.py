@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify, send_file, abort
 from flask_login import login_required, current_user
 from .models import db, User, Course, Lesson, Bookmark
+import random
+import string
 
 pages = Blueprint("pages", __name__)
 
@@ -12,14 +14,67 @@ def home():
 @pages.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', user=current_user)
+    courses = current_user.courses
 
-@pages.route('/create_course')
-def create_course():
-    return render_template('create_course.html', user=current_user)
+    return render_template('dashboard.html', user=current_user, courses=courses)
 
-@pages.route('/submit_course', methods=['POST'])
-def submit_course():
+@pages.route('/create_course/<course_id>')
+def create_course(course_id):
+    # For New Course
+    if course_id == 0 or course_id == "0":
+        # Generates Temporary Course Info to Append Lessons 
+        def title_gen(name):
+            chars = string.printable
+            word = ""
+
+            if name == "title":
+                length = 50
+            elif name == "short_desc":
+                length = 100
+            elif name == "full_desc":
+                length = 200
+            
+            for i in range(length):
+                word += chars[random.randint(0,len(chars)-1)]
+            
+            return word
+
+        course_title = title_gen("title")
+        short_course_desc = title_gen("short_desc")
+        full_course_desc = title_gen("full_desc")
+
+        course_type = "in_progress"
+        skill_level = "in_progress"
+
+        image_data = None
+        image_mime_type = None
+
+        crs = Course(
+                creator=current_user.user_id, 
+                title=course_title, 
+                short_desc=short_course_desc,
+                full_desc=full_course_desc,
+                course_type=course_type,
+                skill_level=skill_level,
+                thumbnail=image_data, 
+                image_mime_type=image_mime_type
+                )
+
+        db.session.add(crs)
+        db.session.commit()
+
+        course = Course.query.filter_by(title=course_title).first()
+    
+    # For Editing Course
+    else:
+        course = Course.query.filter_by(id=course_id).first()
+
+    return render_template('create_course.html', user=current_user, course=course)
+
+@pages.route('/submit_course/<course_id>', methods=['POST'])
+def submit_course(course_id):
+    course = Course.query.filter_by(id=course_id).first()
+
     course_title = request.form.get('course-title')
     short_course_desc = request.form.get('short-course-desc')
     full_course_desc = request.form.get('course-desc')
@@ -37,58 +92,98 @@ def submit_course():
         flash("Course Requires Course Type and Skill Level", "error")
 
     if not course_thumbnail:
-        image_data = None
-        image_mime_type = None
+        course.thumbnail = None
+        course.image_mime_type = None
 
     else:
-        image_data = course_thumbnail.read()
-        image_mime_type = course_thumbnail.mimetype
+        course.thumbnail = course_thumbnail.read()
+        course.image_mime_type = course_thumbnail.mimetype
 
-    course = Course(
-            creator=current_user.user_id, 
-            title=course_title, 
-            short_desc=short_course_desc,
-            full_desc=full_course_desc,
-            course_type=course_type,
-            skill_level=skill_level,
-            thumbnail=image_data, 
-            image_mime_type=image_mime_type
-            )
+    course.creator = current_user.user_id 
+    course.title = course_title
+    course.short_desc = short_course_desc
+    course.full_desc = full_course_desc
+    course.course_type = course_type
+    course.skill_level = skill_level
 
-    db.session.add(course)
-    db.session.commit()
+    try:
+        db.session.commit()
+        flash("Course Created!", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash(f"An error occurred: {e}", "error")
 
-    flash("Course Created!", "success")
     return redirect(url_for("pages.dashboard"))
 
-@pages.route('/submit_lesson<course_id>', methods=['POST'])
+@pages.route('/submit_lesson/<course_id>', methods=['POST'])
 def submit_lesson(course_id):
-    if course_id == 0:
-        # Create course
-        pass
-    
     course = Course.query.filter_by(id=course_id).first()
 
     if not course:
-        return jsonify({
-            'status': 'error',
-            'message': 'Course not found'
-            })
+        flash("Course Not Found", "error")
 
     lesson_title = request.form.get('lesson-title')
     short_lesson_desc = request.form.get('short-lesson-desc')
     lesson_thumbnail = request.files.get('thumbnail-lesson')
 
+    if not lesson_title:
+        flash("Lesson Requires Title", "error")
+        
+    if not short_lesson_desc:
+        flash("Lesson Requires Description", "error")
+
+    if not lesson_thumbnail:
+        image_data = None
+        image_mime_type = None
+
+    else:
+        image_data = lesson_thumbnail.read()
+        image_mime_type = lesson_thumbnail.mimetype
+
     video = request.files.get('video')
     document = request.files.get('document')
     file = request.files.get('file')
 
-    # DB stuff
+    lesson = Lesson(
+            course_id=course.id,
+            creator=current_user.user_id, 
+            title=lesson_title, 
+            short_desc=short_lesson_desc,
+            thumbnail=image_data, 
+            image_mime_type=image_mime_type
+            )
 
-    return jsonify({
-        'status': 'success', 
-        'message': 'Lesson submitted successfully'
-        })
+    db.session.add(lesson)
+    db.session.commit()
+
+    flash("Lesson Added!", "success")
+    return redirect(url_for('pages.create_course', course=course, course_id=course.id))
+
+@pages.route('/fetch4js', methods=['POST'])
+@login_required
+def fetch4js():
+    course_id = request.json.get('course_id')  
+    course = Course.query.filter_by(id=course_id).first()
+
+    if course:
+        course_data = {
+            'title': course.title,
+            'short_desc': course.short_desc,
+            'full_desc': course.full_desc,
+            'type': course.course_type,
+            'level': course.skill_level
+        }
+
+        return jsonify(course_data)
+    else:
+        return jsonify({'error': 'Course not found'}), 404
+
+@pages.route('/view_course/<course_id>')
+@login_required
+def view_course(course_id):
+    course = Course.query.filter_by(id=course_id).first()
+
+    return render_template('view_course.html', user=current_user, course=course)
 
 @pages.route('/profile')
 @login_required

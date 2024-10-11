@@ -184,6 +184,11 @@ section h3 {
     width: auto;
 }
 
+.course-info-own {
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
 .course-info {
     width: 100%;
     font-size: 14px;
@@ -202,13 +207,33 @@ section h3 {
     color: #C1BFB5;
 }
 
-.course-info svg:hover {
+.course-info svg:hover:not(.options) {
     cursor: pointer;
     color: #2F4550;
 }
 
 .course-img:hover, .course-title:hover, .course-desc:hover, .h-course-img:hover {
     cursor: pointer;
+}
+
+.adjust-a {
+    width: 40%;
+    height: 25px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #C1BFB5;
+    border-radius: 8px;
+    margin-top: -25px;
+    text-decoration: none;
+    color: #C1BFB5;
+}
+
+.adjust-a svg {
+    width: 30px;
+}
+
+.adjust-a:hover {
+    background-color: #2F4550;
 }
 
 .h-info {

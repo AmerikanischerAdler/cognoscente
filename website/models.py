@@ -15,6 +15,11 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(100))
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
 
+    #Relationships
+    courses = db.relationship("Course", backref="user", passive_deletes=True)
+    lessons = db.relationship("Lesson", backref="user", passive_deletes=True)
+    bookmarks = db.relationship("Bookmark", backref="user", passive_deletes=True)
+
     # Override get_id to take user_id instead of id 
     def get_id(self):
         return str(self.user_id)  
@@ -43,7 +48,8 @@ class Lesson(db.Model):
     __tablename__ = 'lessons'  
 
     id = db.Column(db.Integer, primary_key=True)
-    desc = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
+    short_desc = db.Column(db.String(200), nullable=False)
     thumbnail = db.Column(db.LargeBinary, nullable=True)
     image_mime_type = db.Column(db.String(50), nullable=True)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())

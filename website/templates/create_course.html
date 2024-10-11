@@ -6,13 +6,17 @@
 
 {% block title %}
   <div id="title">
+    {% if course.title|length != 50 %}
+    <h1>{{ course.title }}</h1>
+    {% else %}
     <h1>Create A Course</h1>
+    {% endif %}
   </div>
 {% endblock %}
 
 {% block content %}
-  <div class="contain-all">
-    <form method="POST" enctype="multipart/form-data" id="courseForm" action="/submit_course">
+  <div class="contain-all" id="overall-course-container" data-course-id="{{ course.id }}">
+    <form method="POST" enctype="multipart/form-data" id="courseForm" action="/submit_course/{{ course.id }}">
       <div class="h-course">
         <div class="h-course-h">
           <div class="course h-course-img">
@@ -23,8 +27,8 @@
             <input type="file" id="thumbnail-course" name="thumbnail-course" form="courseForm">
           </div>
           <div class="h-course">
-            <input type="text" name="course-title" class="course-title course h-title" placeholder="Course Title" form="courseForm">
-            <input type="text" name="short-course-desc" class="course course-desc crs-desc" placeholder="Short Course Description" form="courseForm">
+            <input type="text" name="course-title" id="course-title" class="course-title course h-title" placeholder="Course Title" form="courseForm">
+            <input type="text" name="short-course-desc" id="short-course-desc" class="course course-desc crs-desc" placeholder="Short Course Description" form="courseForm">
             <div class="course-info h-info">
 
               <label for="course_type">Course Type: </label>
@@ -48,15 +52,11 @@
       </div>
 
       <div class="h-course textarea-contain">
-        <textarea name="course-desc" class="crs-desc" placeholder="Full Course Description" form="courseForm"></textarea>
+        <textarea name="course-desc" class="crs-desc" id="full-course-desc" placeholder="Full Course Description" form="courseForm"></textarea>
       </div>
     </form>
 
-    {% if course_id %}
-    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson/{{ course_id }}">
-    {% else %}
-    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson/0">
-    {% endif %}
+    <form method="POST" enctype="multipart/form-data" class="crs-cntn-mirror" id="lessonForm" action="/submit_lesson/{{ course.id }}">
       <div class="h-course textarea-contain">
         <h2>Add Lesson</h2>
         <a class="add-btn" onclick="addLesson()">
