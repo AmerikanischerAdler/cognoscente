@@ -22,9 +22,18 @@ function fetchCourse() {
             let courseType = document.getElementById("course_type");
             let skillLevel = document.getElementById("skill_level");
 
-            titleInp.value = data.title;
-            shortDesc.value = data.short_desc;
-            fullDesc.value = data.full_desc
+            if (data.title.length !== 50) {
+                titleInp.value = data.title;
+            }
+
+            if (data.shortDesc.length !== 50) {
+                shortDesc.value = data.short_desc;
+            }
+
+            if (data.fullDesc.length !== 50) {
+                fullDesc.value = data.full_desc
+            }
+
             courseType.value = data.type
             skillLevel.value = data.level
         }

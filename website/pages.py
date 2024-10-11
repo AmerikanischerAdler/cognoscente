@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .models import db, User, Course, Lesson, Bookmark
 import random
 import string
+import io
 
 pages = Blueprint("pages", __name__)
 
@@ -71,6 +72,32 @@ def create_course(course_id):
 
     return render_template('create_course.html', user=current_user, course=course)
 
+@pages.route('/get_thumbnail/<int:course_id>')
+def get_thumbnail(course_id):
+    course = Course.query.get(course_id)
+    if course and course.thumbnail and course.image_mime_type:
+        return send_file(
+            io.BytesIO(course.thumbnail),
+            mimetype=course.image_mime_type,
+            as_attachment=False,
+            download_name=f'course_{course_id}.jpeg'
+        )
+    else:
+        abort(404)
+
+@pages.route('/get_lesson_thumbnail/<int:lesson_id>')
+def get_lesson_thumbnail(lesson_id):
+    lesson = Lesson.query.get(lesson_id)
+    if lesson and lesson.thumbnail and lesson.image_mime_type:
+        return send_file(
+            io.BytesIO(lesson.thumbnail),
+            mimetype=lesson.image_mime_type,
+            as_attachment=False,
+            download_name=f'lesson_{lesson_id}.jpeg'
+        )
+    else:
+        abort(404)
+
 @pages.route('/submit_course/<course_id>', methods=['POST'])
 def submit_course(course_id):
     course = Course.query.filter_by(id=course_id).first()
@@ -84,12 +111,15 @@ def submit_course(course_id):
 
     if not short_course_desc or not full_course_desc:
         flash("Course Requires Description", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
 
     if not course_title:
         flash("Course Requires Title", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
     
     if not course_type or not skill_level:
         flash("Course Requires Course Type and Skill Level", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
 
     if not course_thumbnail:
         course.thumbnail = None
@@ -121,6 +151,7 @@ def submit_lesson(course_id):
 
     if not course:
         flash("Course Not Found", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
 
     lesson_title = request.form.get('lesson-title')
     short_lesson_desc = request.form.get('short-lesson-desc')
@@ -128,9 +159,11 @@ def submit_lesson(course_id):
 
     if not lesson_title:
         flash("Lesson Requires Title", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
         
     if not short_lesson_desc:
         flash("Lesson Requires Description", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
 
     if not lesson_thumbnail:
         image_data = None
@@ -157,6 +190,53 @@ def submit_lesson(course_id):
     db.session.commit()
 
     flash("Lesson Added!", "success")
+    return redirect(url_for('pages.create_course', course=course, course_id=course.id))
+
+@pages.route('/edit_lesson/<int:lesson_id>', methods=['POST'])
+@login_required
+def edit_lesson(lesson_id):
+    lesson = Lesson.query.filter_by(id=lesson_id).first()
+    course = lesson.course
+
+    lesson_title = request.form.get(f'lesson-title-{lesson_id}')
+    short_lesson_desc = request.form.get(f'short-lesson-desc-{lesson_id}')
+    lesson_thumbnail = request.files.get(f'thumbnail-lesson-{lesson_id}')
+
+    if not lesson_title:
+        flash("Lesson Requires Title", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
+        
+    if not short_lesson_desc:
+        flash("Lesson Requires Description", "error")
+        return redirect(url_for('pages.create_course', course=course, course_id=course.id))
+
+    if not lesson_thumbnail:
+        image_data = None
+        image_mime_type = None
+
+        lesson.title = lesson_title
+        lesson.short_desc = short_lesson_desc
+    else:
+        image_data = lesson_thumbnail.read()
+        image_mime_type = lesson_thumbnail.mimetype
+
+        lesson.title = lesson_title
+        lesson.short_desc = short_lesson_desc
+        lesson.thumbnail = image_data
+        lesson.image_mime_type = image_mime_type
+
+    # Add later
+    video = request.files.get(f'video-{lesson_id}')
+    document = request.files.get(f'document-{lesson_id}')
+    file = request.files.get(f'file-{lesson_id}')
+
+    try:
+        db.session.commit()
+        flash("Lesson Added!", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash(f"An error occurred: {e}", "error")
+
     return redirect(url_for('pages.create_course', course=course, course_id=course.id))
 
 @pages.route('/fetch4js', methods=['POST'])

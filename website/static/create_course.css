@@ -167,6 +167,12 @@ input:focus, .crs-desc:focus {
     padding: 0;
 }
 
+.thumbnail-img {
+    height: 100%;
+    width: auto;
+    border-radius: 8px;
+}
+
 .img-holder {
     height: 100%;
     width: 100%;
@@ -178,11 +184,12 @@ input:focus, .crs-desc:focus {
 
 .h-course-img {
     height: 235px;
-    width: auto;
+    width: 275px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
     gap: 10px;
 }
 
