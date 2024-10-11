@@ -32,6 +32,15 @@ def dashboard():
 
     return render_template('dashboard.html', user=current_user, courses=courses)
 
+@pages.route('/explore')
+def explore():
+    science_courses = Course.query.filter_by(course_type="Science").all()
+    tech_courses = Course.query.filter_by(course_type="Technology").all()
+    eng_courses = Course.query.filter_by(course_type="Engineering").all()
+    math_courses = Course.query.filter_by(course_type="Mathematics").all()
+
+    return render_template('explore.html', user=current_user, math_courses=math_courses, tech_courses=tech_courses, eng_courses=eng_courses, science_courses=science_courses)
+
 @pages.route('/create_course/<course_id>')
 def create_course(course_id):
     # For New Course

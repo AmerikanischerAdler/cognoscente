@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block page %}Search Results{% endblock %}
+
+{% block style %}search_results{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h2>Explore Courses</h2>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="contain-all">
+    <div id="section-container">
+
+      <section id="science-courses" class="courses">
+        <h2>Science Courses</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+            {% for course in science_courses %}
+            <div class="v-course">
+              <div class="v-course extra-div">
+                {% if course.thumbnail %}
+                <img class="course course-img" src="{{ url_for('pages.get_thumbnail', course_id=course.id) }}" alt="{{ course.title }}">
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                {% endif %}
+                <h3 class="course-title course">{{ course.title }}</h3>
+                <p class="course-desc course">{{ course.short_desc }}</p>
+              </div>
+              <div class="course-info course-info-own">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="{{ user.username }}"><span>{{ user.username }}</span></a></p>
+                <p><strong>Released: </strong> {{ course.date_created.strftime('%Y-%m-%d') }}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+              {% if current_user.user_id == course.creator %}
+              <div class="course-info course-info-own">
+                <a href="{{ url_for('pages.create_course', course_id = course.id) }}" class="course-info adjust-a" style="border: 1px solid #C1BFB5; border-radius: 5px;">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.09 14.441v4.44a2.37 2.37 0 0 1-2.369 2.369H5.12a2.37 2.37 0 0 1-2.369-2.383V7.279a2.356 2.356 0 0 1 2.37-2.37H9.56"/><path d="M6.835 15.803v-2.165c.002-.357.144-.7.395-.953l9.532-9.532a1.36 1.36 0 0 1 1.934 0l2.151 2.151a1.36 1.36 0 0 1 0 1.934l-9.532 9.532a1.36 1.36 0 0 1-.953.395H8.197a1.36 1.36 0 0 1-1.362-1.362M19.09 8.995l-4.085-4.086"/></g></svg>
+                  <p>Edit</p>
+                </a>
+                <a href="{{ url_for('pages.view_course', course_id = course.id) }}" class="course-info adjust-a">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M21.544 11.045c.304.426.456.64.456.955c0 .316-.152.529-.456.955C20.178 14.871 16.689 19 12 19c-4.69 0-8.178-4.13-9.544-6.045C2.152 12.529 2 12.315 2 12c0-.316.152-.529.456-.955C3.822 9.129 7.311 5 12 5c4.69 0 8.178 4.13 9.544 6.045"/><path d="M15 12a3 3 0 1 0-6 0a3 3 0 0 0 6 0"/></g></svg>
+                  <p>Study</p>
+                </a>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="tech-courses" class="courses">
+        <h2>Technology Courses</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+            {% for course in tech_courses %}
+            <div class="v-course">
+              <div class="v-course extra-div">
+                {% if course.thumbnail %}
+                <img class="course course-img" src="{{ url_for('pages.get_thumbnail', course_id=course.id) }}" alt="{{ course.title }}">
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                {% endif %}
+                <h3 class="course-title course">{{ course.title }}</h3>
+                <p class="course-desc course">{{ course.short_desc }}</p>
+              </div>
+              <div class="course-info course-info-own">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="{{ user.username }}"><span>{{ user.username }}</span></a></p>
+                <p><strong>Released: </strong> {{ course.date_created.strftime('%Y-%m-%d') }}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+              {% if current_user.user_id == course.creator %}
+              <div class="course-info course-info-own">
+                <a href="{{ url_for('pages.create_course', course_id = course.id) }}" class="course-info adjust-a" style="border: 1px solid #C1BFB5; border-radius: 5px;">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.09 14.441v4.44a2.37 2.37 0 0 1-2.369 2.369H5.12a2.37 2.37 0 0 1-2.369-2.383V7.279a2.356 2.356 0 0 1 2.37-2.37H9.56"/><path d="M6.835 15.803v-2.165c.002-.357.144-.7.395-.953l9.532-9.532a1.36 1.36 0 0 1 1.934 0l2.151 2.151a1.36 1.36 0 0 1 0 1.934l-9.532 9.532a1.36 1.36 0 0 1-.953.395H8.197a1.36 1.36 0 0 1-1.362-1.362M19.09 8.995l-4.085-4.086"/></g></svg>
+                  <p>Edit</p>
+                </a>
+                <a href="{{ url_for('pages.view_course', course_id = course.id) }}" class="course-info adjust-a">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M21.544 11.045c.304.426.456.64.456.955c0 .316-.152.529-.456.955C20.178 14.871 16.689 19 12 19c-4.69 0-8.178-4.13-9.544-6.045C2.152 12.529 2 12.315 2 12c0-.316.152-.529.456-.955C3.822 9.129 7.311 5 12 5c4.69 0 8.178 4.13 9.544 6.045"/><path d="M15 12a3 3 0 1 0-6 0a3 3 0 0 0 6 0"/></g></svg>
+                  <p>Study</p>
+                </a>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="eng-courses" class="courses">
+        <h2>Engineering Courses</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+            {% for course in eng_courses %}
+            <div class="v-course">
+              <div class="v-course extra-div">
+                {% if course.thumbnail %}
+                <img class="course course-img" src="{{ url_for('pages.get_thumbnail', course_id=course.id) }}" alt="{{ course.title }}">
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                {% endif %}
+                <h3 class="course-title course">{{ course.title }}</h3>
+                <p class="course-desc course">{{ course.short_desc }}</p>
+              </div>
+              <div class="course-info course-info-own">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="{{ user.username }}"><span>{{ user.username }}</span></a></p>
+                <p><strong>Released: </strong> {{ course.date_created.strftime('%Y-%m-%d') }}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+              {% if current_user.user_id == course.creator %}
+              <div class="course-info course-info-own">
+                <a href="{{ url_for('pages.create_course', course_id = course.id) }}" class="course-info adjust-a" style="border: 1px solid #C1BFB5; border-radius: 5px;">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.09 14.441v4.44a2.37 2.37 0 0 1-2.369 2.369H5.12a2.37 2.37 0 0 1-2.369-2.383V7.279a2.356 2.356 0 0 1 2.37-2.37H9.56"/><path d="M6.835 15.803v-2.165c.002-.357.144-.7.395-.953l9.532-9.532a1.36 1.36 0 0 1 1.934 0l2.151 2.151a1.36 1.36 0 0 1 0 1.934l-9.532 9.532a1.36 1.36 0 0 1-.953.395H8.197a1.36 1.36 0 0 1-1.362-1.362M19.09 8.995l-4.085-4.086"/></g></svg>
+                  <p>Edit</p>
+                </a>
+                <a href="{{ url_for('pages.view_course', course_id = course.id) }}" class="course-info adjust-a">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M21.544 11.045c.304.426.456.64.456.955c0 .316-.152.529-.456.955C20.178 14.871 16.689 19 12 19c-4.69 0-8.178-4.13-9.544-6.045C2.152 12.529 2 12.315 2 12c0-.316.152-.529.456-.955C3.822 9.129 7.311 5 12 5c4.69 0 8.178 4.13 9.544 6.045"/><path d="M15 12a3 3 0 1 0-6 0a3 3 0 0 0 6 0"/></g></svg>
+                  <p>Study</p>
+                </a>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="math-courses" class="courses">
+        <h2>Mathematics Courses</h2>
+        <div class="course-contain">
+          <div class="v-course-contain">
+            {% for course in math_courses %}
+            <div class="v-course">
+              <div class="v-course extra-div">
+                {% if course.thumbnail %}
+                <img class="course course-img" src="{{ url_for('pages.get_thumbnail', course_id=course.id) }}" alt="{{ course.title }}">
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                {% endif %}
+                <h3 class="course-title course">{{ course.title }}</h3>
+                <p class="course-desc course">{{ course.short_desc }}</p>
+              </div>
+              <div class="course-info course-info-own">
+                <p class="course-link"><strong>Creator: </strong><a href="#" class="switch-link" data-replace="{{ user.username }}"><span>{{ user.username }}</span></a></p>
+                <p><strong>Released: </strong> {{ course.date_created.strftime('%Y-%m-%d') }}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+              </div>
+              {% if current_user.user_id == course.creator %}
+              <div class="course-info course-info-own">
+                <a href="{{ url_for('pages.create_course', course_id = course.id) }}" class="course-info adjust-a" style="border: 1px solid #C1BFB5; border-radius: 5px;">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.09 14.441v4.44a2.37 2.37 0 0 1-2.369 2.369H5.12a2.37 2.37 0 0 1-2.369-2.383V7.279a2.356 2.356 0 0 1 2.37-2.37H9.56"/><path d="M6.835 15.803v-2.165c.002-.357.144-.7.395-.953l9.532-9.532a1.36 1.36 0 0 1 1.934 0l2.151 2.151a1.36 1.36 0 0 1 0 1.934l-9.532 9.532a1.36 1.36 0 0 1-.953.395H8.197a1.36 1.36 0 0 1-1.362-1.362M19.09 8.995l-4.085-4.086"/></g></svg>
+                  <p>Edit</p>
+                </a>
+                <a href="{{ url_for('pages.view_course', course_id = course.id) }}" class="course-info adjust-a">
+                  <svg class="options" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M21.544 11.045c.304.426.456.64.456.955c0 .316-.152.529-.456.955C20.178 14.871 16.689 19 12 19c-4.69 0-8.178-4.13-9.544-6.045C2.152 12.529 2 12.315 2 12c0-.316.152-.529.456-.955C3.822 9.129 7.311 5 12 5c4.69 0 8.178 4.13 9.544 6.045"/><path d="M15 12a3 3 0 1 0-6 0a3 3 0 0 0 6 0"/></g></svg>
+                  <p>Study</p>
+                </a>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}
+
+{% block foot %}
+  <div id="foot"></div>
+{% endblock %}
