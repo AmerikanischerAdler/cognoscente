@@ -26,11 +26,11 @@ function fetchCourse() {
                 titleInp.value = data.title;
             }
 
-            if (data.shortDesc.length !== 50) {
+            if (data.short_desc.length !== 100) {
                 shortDesc.value = data.short_desc;
             }
 
-            if (data.fullDesc.length !== 50) {
+            if (data.full_desc.length !== 200) {
                 fullDesc.value = data.full_desc
             }
 

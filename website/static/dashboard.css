@@ -174,8 +174,9 @@ section h3 {
 }
 
 .course-img {
-    width: 95%;
-    margin-top: 10px;
+    height: 300px;
+    width: auto;
+    margin-top: 20px;
     padding: 0;
 }
 
@@ -244,11 +245,18 @@ section h3 {
     height: 100%;
     width: 100%;
     border: none;
+    overflow-x: hidden;
     margin-bottom: -25px;
 }
 
 .extra-div p {
     margin-bottom: 5px;
+}
+
+.extra-div > svg {
+    height: 55%;
+    width: 30%;
+    color: #C1BFB5;
 }
 
 .courses a {
